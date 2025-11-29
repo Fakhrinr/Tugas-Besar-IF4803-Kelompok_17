@@ -18,3 +18,14 @@ struct produk{
 typedef struct ListChild{
     addressC first;
 };
+
+void createListProduk(ListChild &L);
+addressC createElmProduk(string nama, string kode, string kategori, int stok, int harga);
+void insertProduk(ListChild &L, addressC P);
+void deleteProduk(ListChild &L, string kodeProduk);
+addressC searchProduk(ListChild L, string kodeProduk);
+void searchProdukLowStock(ListChild L, int Batasan);
+int hitungProdukKategori(ListChild L, string kategori);
+int hitungProdukLowStock(ListChild L, int Batasan);    
+void showAllProduk(ListChild L);
+void showProdukInfo(addressC P);
