@@ -19,12 +19,14 @@ typedef struct ListParent{
 
 void createListToko(ListParent &L);
 addressP createElmToko(infotype nama, infotype alamat);
-void insertToko(ListParent &L, addressP P);
+void insertFirstToko(ListParent &L, addressP P);
+void insertLastToko(ListParent &L, addressP P);
+void insertAfterToko(ListParent &L, addressP P, infotype prec);
 void deleteFirstToko(ListParent &L);
 void deleteLastToko(ListParent &L);
 void deleteAfterToko(ListParent &L, string prev);
 addressP searchToko(ListParent L, string namaToko);
 void showAllToko(ListParent L);
-int hitungTotalKategoriProduk(addressP P, string kategori);
+int hitungTotalProduk(addressP P);
 int hitungJumlahToko(ListParent L);
 #endif // TOKO_H_INCLUDED
