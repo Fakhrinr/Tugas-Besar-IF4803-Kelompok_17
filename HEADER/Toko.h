@@ -1,3 +1,5 @@
+#ifndef TOKO_H_INCLUDED
+#define TOKO_H_INCLUDED
 #include <iostream>
 using namespace std;
 
@@ -23,3 +25,4 @@ addressP searchToko(ListParent L, string namaToko);
 void showAllToko(ListParent L);
 int hitungTotalKategoriProduk(addressP P, string kategori);
 int hitungJumlahToko(ListParent L);
+#endif // TOKO_H_INCLUDED

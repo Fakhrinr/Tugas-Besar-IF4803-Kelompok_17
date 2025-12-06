@@ -1,3 +1,5 @@
+#ifndef PRODUK_H_INCLUDED
+#define PRODUK_H_INCLUDED
 #include <iostream>
 using namespace std;
 
@@ -25,3 +27,5 @@ int hitungProdukKategori(addressP P, infotype kategori);
 int hitungProdukLowStock(addressP P, int Batasan);    
 void showAllProduk(addressP P);
 void showProdukInfo(addressP P);
+
+#endif // PRODUK_H_INCLUDED
