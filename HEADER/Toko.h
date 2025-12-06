@@ -20,7 +20,9 @@ typedef struct ListParent{
 void createListToko(ListParent &L);
 addressP createElmToko(infotype nama, infotype alamat);
 void insertToko(ListParent &L, addressP P);
-void deleteToko(ListParent &L, string namaToko);
+void deleteFirstToko(ListParent &L);
+void deleteLastToko(ListParent &L);
+void deleteAfterToko(ListParent &L, string prev);
 addressP searchToko(ListParent L, string namaToko);
 void showAllToko(ListParent L);
 int hitungTotalKategoriProduk(addressP P, string kategori);
