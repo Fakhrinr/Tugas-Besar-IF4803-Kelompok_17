@@ -2,30 +2,26 @@
 using namespace std;
 
 typedef struct elmToko *addressP;
-typedef struct produk *addressC;
+typedef struct elmProduk *addressC;
 typedef string infotype;
-struct produk{
+
+struct elmProduk{
     infotype namaProduk;
     infotype kategori;
     infotype pemasok;
     int stok;
     int harga;
-    addressC nextC;
-    addressC prevC;
-    addressP nextCP;
+
+    addressC next;
+    addressC prev;
 };
 
-typedef struct ListChild{
-    addressC first;
-};
-
-void createListProduk(ListChild &L);
 addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int stok, int harga);
-void insertProduk(ListChild &L, addressC P);
-void deleteProduk(ListChild &L, infotype kodeProduk);
-addressC searchProduk(ListChild L, infotype kodeProduk);
-void searchProdukLowStock(ListChild L, int Batasan);
-int hitungProdukKategori(ListChild L, infotype kategori);
-int hitungProdukLowStock(ListChild L, int Batasan);    
-void showAllProduk(ListChild L);
-void showProdukInfo(addressC P);
+void insertProduk(addressP &P, addressC C);
+void deleteProduk(addressP &P, infotype namaProduk);
+addressC searchProduk(addressP P, infotype namaProduk);
+void searchProdukLowStock(addressP P, int Batasan);
+int hitungProdukKategori(addressP P, infotype kategori);
+int hitungProdukLowStock(addressP P, int Batasan);    
+void showAllProduk(addressP P);
+void showProdukInfo(addressP P);

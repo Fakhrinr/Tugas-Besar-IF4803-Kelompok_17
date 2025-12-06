@@ -8,8 +8,8 @@ typedef elmToko *addressP;
 typedef struct elmToko{
     infotype namaToko;
     infotype alamatToko;
-    addressC firstC;
     addressP nextT;
+    addressC firstC;
 };
 typedef struct ListParent{
     addressP first;
