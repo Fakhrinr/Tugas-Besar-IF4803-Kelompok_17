@@ -19,7 +19,9 @@ struct elmProduk{
 };
 
 addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int stok, int harga);
-void insertProduk(addressP &P, addressC C);
+void insertFirstProduk(addressP &P, addressC C);
+void insertLastProduk(addressP &P, addressC C);
+void insertAfterProduk(addressP &P, addressC C, infotype prev);
 void deleteProduk(addressP &P, infotype namaProduk);
 addressC searchProduk(addressP P, infotype namaProduk);
 void searchProdukLowStock(addressP P, int Batasan);
