@@ -7,54 +7,54 @@ addressP createElmToko(infotype nama, infotype alamat) {
     addressP TokoBaru = new elmToko;
     TokoBaru->namaToko = nama;
     TokoBaru->alamatToko = alamat;
-    TokoBaru->nextT = NULL;
-    TokoBaru->firstC = NULL;
+    TokoBaru->nextT = nullptr;
+    TokoBaru->firstC = nullptr;
 
     return TokoBaru;
 };
 
 void deleteFirstToko(ListParent &L) {
-    if (L.first == NULL){
+    if (L.first == nullptr){
         cout << "kosong";
     }else{
         addressP P = L.first;
         L.first = P->nextT;
-        P->nextT = NULL;
+        P->nextT = nullptr;
     };
 };
 
 void deleteLastToko(ListParent &L) {
-    if (L.first == NULL) {
+    if (L.first == nullptr) {
         cout << "kosong";
-    } else if (L.first->nextT == NULL) {
-        L.first = NULL;
+    } else if (L.first->nextT == nullptr) {
+        L.first = nullptr;
     } else {
         addressP P = L.first;
-        while (P->nextT->nextT != NULL) {
+        while (P->nextT->nextT != nullptr) {
             P = P->nextT;
         }
-        P->nextT = NULL;
+        P->nextT = nullptr;
     }
 };
 
 void deleteAfterToko(ListParent &L, string prev) {
-    if (L.first == NULL) {
+    if (L.first == nullptr) {
         cout << "kosong";
     } else {
         addressP P = L.first;
         
-        while (P != NULL && P->namaToko != prev) {
+        while (P != nullptr && P->namaToko != prev) {
             P = P->nextT;
         }
         
-        if (P == NULL) {
+        if (P == nullptr) {
             cout << "toko tidak ditemukan";
-        } else if (P->nextT == NULL) {
+        } else if (P->nextT == nullptr) {
             cout << "Toko tidak ditemukan";
         } else {
             addressP toDelete = P->nextT;
             P->nextT = toDelete->nextT;
-            toDelete->nextT = NULL;
+            toDelete->nextT = nullptr;
         }
     }
 };
@@ -63,7 +63,7 @@ void deleteAfterToko(ListParent &L, string prev) {
 void showAllToko(ListParent L) {
     addressP Toko = L.first;
     
-    if (Toko == NULL) {
+    if (Toko == nullptr) {
         cout << "Tidak ada toko yang terdaftar." << endl;
         return;
     }
@@ -72,13 +72,13 @@ void showAllToko(ListParent L) {
     cout << "=============================" << endl;
     
     int Jumlah = 1;
-    while (Toko != NULL) {
+    while (Toko != nullptr) {
         cout << Jumlah << ". Nama Toko: " << Toko->namaToko << endl;
         cout << "   Alamat: " << Toko->alamatToko << endl;
         
         int jumlahProduk = 0;
         addressC produk = Toko->firstC;
-        while (produk != NULL) {
+        while (produk != nullptr) {
             jumlahProduk++;
             produk = produk->next;
         }
@@ -96,7 +96,7 @@ int hitungJumlahToko(ListParent L) {
     int jumlah = 0;
     addressP Toko = L.first;
     
-    while (Toko != NULL) {
+    while (Toko != nullptr) {
         jumlah++;
         Toko = Toko->nextT;
     }

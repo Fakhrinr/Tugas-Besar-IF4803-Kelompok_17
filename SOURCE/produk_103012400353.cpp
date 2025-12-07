@@ -4,41 +4,41 @@
 using namespace std;
 
 void insertFirstProduk(addressP &P, addressC C) {
-    if (P->firstC == NULL) {
+    if (P->firstC == nullptr) {
         P->firstC = C;
-        C->prev = NULL;
-        C->next = NULL;
+        C->prev = nullptr;
+        C->next = nullptr;
     } else {
         C->next = P->firstC;
-        C->prev = NULL;
+        C->prev = nullptr;
         P->firstC->prev = C;
         P->firstC = C;
     }
 }
 
 void insertLastProduk(addressP &P, addressC C) {
-    if (P->firstC == NULL) {
+    if (P->firstC == nullptr) {
         P->firstC = C;
-        C->prev = NULL;
-        C->next = NULL;
+        C->prev = nullptr;
+        C->next = nullptr;
     } else {
         addressC last = P->firstC;
-        while (last->next != NULL) {
+        while (last->next != nullptr) {
             last = last->next;
         }
         C->prev = last;
-        C->next = NULL;
+        C->next = nullptr;
         last->next = C;
     }
 }
 
 void insertAfterProduk(addressP &P, addressC C, infotype prev) {
     addressC prec = P->firstC;
-    while (prec != NULL && prec->namaProduk != prev) {
+    while (prec != nullptr && prec->namaProduk != prev) {
         prec = prec->next;
     }
     
-    if (prec == NULL) {
+    if (prec == nullptr) {
         cout << "Produk " << prev << " tidak ditemukan." << endl;
         return;
     }
@@ -46,7 +46,7 @@ void insertAfterProduk(addressP &P, addressC C, infotype prev) {
     C->next = prec->next;
     C->prev = prec;
     
-    if (prec->next != NULL) {
+    if (prec->next != nullptr) {
         prec->next->prev = C;
     }
     
@@ -56,21 +56,21 @@ void insertAfterProduk(addressP &P, addressC C, infotype prev) {
 addressC searchProduk(addressP P, infotype namaProduk) {
     addressC Produk = P->firstC;
     
-    while (Produk != NULL) {
+    while (Produk != nullptr) {
         if (Produk->namaProduk == namaProduk) {
             return Produk;
         }
         Produk = Produk->next;
     }
     
-    return NULL;
+    return nullptr;
 }
 
 int hitungProdukKategori(addressP P, infotype kategori) {
     int Jumlah = 0;
     addressC Produk = P->firstC;
     
-    while (Produk != NULL) {
+    while (Produk != nullptr) {
         if (Produk->kategori == kategori) {
             Jumlah++;
         }
@@ -83,7 +83,7 @@ int hitungProdukKategori(addressP P, infotype kategori) {
 void showAllProduk(addressP P) {
     addressC Produk = P->firstC;
     
-    if (Produk == NULL) {
+    if (Produk == nullptr) {
         cout << "Tidak ada produk di toko " << P->namaToko << endl;
         return;
     }
@@ -93,7 +93,7 @@ void showAllProduk(addressP P) {
     cout << "--------------------------------------" << endl;
     
     int Jumlah = 1;
-    while (Produk != NULL) {
+    while (Produk != nullptr) {
         cout << Jumlah << ". " << Produk->namaProduk << endl;
         cout << "   Kategori: " << Produk->kategori << endl;
         cout << "   Pemasok: " << Produk->pemasok << endl;
