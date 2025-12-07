@@ -4,7 +4,7 @@
 using namespace std;
 
 void createListToko(ListParent &L){
-    L.first = NULL;
+    L.first = nullptr;
 }
 
 void insertFirstToko(ListParent &L, addressP P){

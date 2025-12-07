@@ -22,7 +22,9 @@ addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int 
 void insertFirstProduk(addressP &P, addressC C);
 void insertLastProduk(addressP &P, addressC C);
 void insertAfterProduk(addressP &P, addressC C, infotype prev);
-void deleteProduk(addressP &P, infotype namaProduk);
+void deleteFirstProduk(addressP &P);
+void deleteLastProduk(addressP &P);
+void deleteAfterProduk(addressP &P, addressC namaProduk);
 addressC searchProduk(addressP P, infotype namaProduk);
 void searchProdukLowStock(addressP P, int Batasan);
 int hitungProdukKategori(addressP P, infotype kategori);
