@@ -1,11 +1,11 @@
+// Produk.h
 #ifndef PRODUK_H_INCLUDED
 #define PRODUK_H_INCLUDED
-#include <iostream>
-using namespace std;
 
-typedef struct elmToko *addressP;
-typedef struct elmProduk *addressC;
-typedef string infotype;
+#include "Toko.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 struct elmProduk{
     infotype namaProduk;
@@ -13,23 +13,22 @@ struct elmProduk{
     infotype pemasok;
     int stok;
     int harga;
-
-    addressC next;
-    addressC prev;
+    elmProduk* next;
+    elmProduk* prev;
 };
 
-addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int stok, int harga);
+addressC createElmProduk(infotype nama, infotype pemasok, infotype kategori, int stok, int harga);
 void insertFirstProduk(addressP &P, addressC C);
 void insertLastProduk(addressP &P, addressC C);
 void insertAfterProduk(addressP &P, addressC C, infotype prev);
 void deleteFirstProduk(addressP &P);
 void deleteLastProduk(addressP &P);
-void deleteAfterProduk(addressP &P, addressC namaProduk);
+void deleteAfterProduk(addressP &P, infotype namaProduk);
 addressC searchProduk(addressP P, infotype namaProduk);
 void searchProdukLowStock(addressP P, int Batasan);
 int hitungProdukKategori(addressP P, infotype kategori);
-int hitungProdukLowStock(addressP P, int Batasan);    
+int hitungProdukLowStock(addressP P, int Batasan);
 void showAllProduk(addressP P);
-void showProdukInfo(addressP P);
+void showProdukInfo(addressP P, infotype kategori);
 
 #endif // PRODUK_H_INCLUDED

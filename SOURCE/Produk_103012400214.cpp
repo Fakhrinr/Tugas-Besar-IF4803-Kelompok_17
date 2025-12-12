@@ -1,12 +1,11 @@
+// Produk_103012400214.cpp
 #include "Toko.h"
 #include "Produk.h"
 #include <iostream>
 using namespace std;
 
-
-addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int stok, int harga){
-    addressC C;
-    C = new elmProduk;
+addressC createElmProduk(infotype nama, infotype pemasok, infotype kategori, int stok, int harga) {
+    addressC C = new elmProduk;
     C->namaProduk = nama;
     C->pemasok = pemasok;
     C->kategori = kategori;
@@ -18,81 +17,113 @@ addressC createElmProduk(infotype nama,infotype pemasok, infotype kategori, int 
     return C;
 }
 
-void deleteFirstProduk(addressP &P){
-    addressC temp;
-    temp = P->firstC;
-    if(P->firstC == nullptr){
-        cout << "Tidak ada yang bisa dihapus";
-    }else if(temp ->next == nullptr){
-        P->firstC = nullptr;
-    }else{
-        temp = P->firstC;
-        P->firstC = P->firstC->next;
-        P->firstC->prev = nullptr;
+void deleteFirstProduk(addressP &P) {
+    if (P->firstC == nullptr) {
+        cout << "Tidak ada produk yang bisa dihapus" << endl;
+    } else {
+        addressC temp = P->firstC;
+        P->firstC = temp->next;
+        if (P->firstC != nullptr) {
+            P->firstC->prev = nullptr;
+        }
+        delete temp;
+        cout << "Produk pertama berhasil dihapus!" << endl;
     }
 }
 
-void deleteLastProduk(addressP &P){
-    addressC temp;
-    if(P->firstC == nullptr){
-        cout << "Tidak ada yang bisa dihapus";
-    }else if(temp ->next == nullptr){
-        P->firstC = nullptr;
-    }else{
-        temp = P->firstC;
-        while(temp->next != nullptr){
+void deleteLastProduk(addressP &P) {
+    if (P->firstC == nullptr) {
+        cout << "Tidak ada produk yang bisa dihapus" << endl;
+    } else if (P->firstC->next == nullptr) {
+        deleteFirstProduk(P);
+    } else {
+        addressC temp = P->firstC;
+        while (temp->next != nullptr) {
             temp = temp->next;
         }
         temp->prev->next = nullptr;
-        temp->prev = nullptr;
+        delete temp;
+        cout << "Produk terakhir berhasil dihapus!" << endl;
     }
 }
 
-//List tidak mungkin Kosong
-void deleteAfterProduk(addressP &P, addressC namaProduk){
-    addressC temp;
-    temp = P->firstC;
-    while(temp->next != namaProduk){
+void deleteAfterProduk(addressP &P, infotype namaProduk) {
+    if (P->firstC == nullptr) {
+        cout << "Tidak ada produk yang bisa dihapus" << endl;
+        return;
+    }
+
+    addressC temp = P->firstC;
+    while (temp != nullptr && temp->namaProduk != namaProduk) {
         temp = temp->next;
     }
-    temp->next = namaProduk->next;
-    namaProduk->next->prev = temp;
-}
 
-void searchProdukLowStock(addressP P, int Batasan){
-    addressC produk;
-    produk = P->firstC;
-    cout << "Produk dengan stok kurang dari" << Batasan << " di toko"<< P->namaToko << endl;
-    while(produk != nullptr){
-        if(produk->stok < Batasan){
-            cout << "Nama Produk: " << produk->namaProduk << ", Stok: " << produk->stok << endl;
+    if (temp == nullptr) {
+        cout << "Produk " << namaProduk << " tidak ditemukan" << endl;
+    } else if (temp->next == nullptr) {
+        cout << "Tidak ada produk setelah " << namaProduk << endl;
+    } else {
+        addressC toDelete = temp->next;
+        temp->next = toDelete->next;
+        if (toDelete->next != nullptr) {
+            toDelete->next->prev = temp;
         }
-        produk = produk->next;
+        delete toDelete;
+        cout << "Produk berhasil dihapus!" << endl;
     }
 }
 
-int hitungProdukLowStock(addressP P, int Batasan){
+void searchProdukLowStock(addressP P, int Batasan) {
+    addressC produk = P->firstC;
+    cout << "Produk dengan stok kurang dari " << Batasan << " di toko " << P->namaToko << ":" << endl;
+
+    bool found = false;
+    while (produk != nullptr) {
+        if (produk->stok < Batasan) {
+            cout << "- " << produk->namaProduk << ", Stok: " << produk->stok << endl;
+            found = true;
+        }
+        produk = produk->next;
+    }
+
+    if (!found) {
+        cout << "Tidak ada produk dengan stok rendah" << endl;
+    }
+}
+
+int hitungProdukLowStock(addressP P, int Batasan) {
     int jumlah = 0;
-    addressC produk;
-    produk = P->firstC;
-    while(produk != nullptr){
-        if(produk->stok < Batasan){
-            jumlah = jumlah +1;
+    addressC produk = P->firstC;
+
+    while (produk != nullptr) {
+        if (produk->stok < Batasan) {
+            jumlah++;
         }
         produk = produk->next;
     }
+
     return jumlah;
 }
 
-//menampilkan data produk berdasarkan kategori
-void showProdukInfo(addressP P, infotype kategori){
-    addressC produk;
-    produk = P->firstC;
-    cout << "Produk dengan kategori " << kategori << " di toko " << P->namaToko << endl;
-    while(produk != nullptr){
-        if(produk->kategori == kategori){
-            cout << "Nama Produk:" << produk->namaProduk << ", Kategori: " << produk->kategori << ", Pemasok: " << produk->pemasok << ", Stok: " << produk->stok << ", Harga: " << produk->harga << endl;
+void showProdukInfo(addressP P, infotype kategori) {
+    addressC produk = P->firstC;
+    cout << "\nProduk dengan kategori " << kategori << " di toko " << P->namaToko << ":" << endl;
+
+    bool found = false;
+    while (produk != nullptr) {
+        if (produk->kategori == kategori) {
+            cout << "- Nama Produk: " << produk->namaProduk << endl;
+            cout << "  Kategori: " << produk->kategori << endl;
+            cout << "  Pemasok: " << produk->pemasok << endl;
+            cout << "  Stok: " << produk->stok << endl;
+            cout << "  Harga: Rp " << produk->harga << endl;
+            cout << "  -------------------------" << endl;
+            found = true;
         }
+        produk = produk->next;
     }
-    produk = produk->next;
+
+    if (!found) {
+        cout << "Tidak ada produk dengan kategori " << kategori << endl;
+    }
 }

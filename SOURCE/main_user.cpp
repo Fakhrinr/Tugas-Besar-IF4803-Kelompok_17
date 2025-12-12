@@ -1,3 +1,4 @@
+// main_user.cpp
 #include "Toko.h"
 #include "Produk.h"
 #include <iostream>
@@ -5,18 +6,19 @@ using namespace std;
 
 void mainUser(ListParent &L) {
     int pilihan = -1;
-    
+
     while (pilihan != 0) {
-        cout << "\n=== MENU USER ===" << endl;
-        cout << "1. Insert Toko" << endl;
-        cout << "2. Insert Produk" << endl;
-        cout << "3. Show All Toko" << endl;
-        cout << "4. Show All Produk" << endl;
-        cout << "5. Show Produk by Kategori" << endl;
-        cout << "6. Search Toko" << endl;
-        cout << "7. Search Produk" << endl;
+        cout << "\n=== MENU PRODUK ===" << endl;
+        cout << "1. Tambah Toko" << endl;
+        cout << "2. Tambah Produk" << endl;
+        cout << "3. Lihat Semua Toko" << endl;
+        cout << "4. Lihat Produk di Toko" << endl;
+        cout << "5. Cari Produk Berdasarkan Kategori" << endl;
+        cout << "6. Cari Toko" << endl;
+        cout << "7. Cari Produk" << endl;
         cout << "8. Hitung Total Produk di Toko" << endl;
-        cout << "9. Hitung Produk by Kategori" << endl;
+        cout << "9. Hitung Produk Berdasarkan Kategori" << endl;
+        cout << "10. Cek Produk Stok Rendah" << endl;
         cout << "0. Keluar" << endl;
         cout << "Pilihan: ";
         cin >> pilihan;
@@ -24,10 +26,10 @@ void mainUser(ListParent &L) {
         string nama, alamat, pemasok, kategori, namaToko, namaProduk;
 
         if (pilihan == 1) {
-            cout << "\n--- Insert Toko ---" << endl;
-            cout << "Nama Toko (tanpa spasi): ";
+            cout << "\n--- Tambah Toko ---" << endl;
+            cout << "Nama Toko: ";
             cin >> nama;
-            cout << "Alamat Toko (tanpa spasi): ";
+            cout << "Alamat Toko: ";
             cin >> alamat;
 
             addressP tokoBaru = createElmToko(nama, alamat);
@@ -35,7 +37,7 @@ void mainUser(ListParent &L) {
             cout << "Toko berhasil ditambahkan!" << endl;
 
         } else if (pilihan == 2) {
-            cout << "\n--- Insert Produk ---" << endl;
+            cout << "\n--- Tambah Produk ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
 
@@ -66,7 +68,7 @@ void mainUser(ListParent &L) {
             showAllToko(L);
 
         } else if (pilihan == 4) {
-            cout << "\n--- Show All Produk ---" << endl;
+            cout << "\n--- Lihat Produk di Toko ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
 
@@ -78,7 +80,7 @@ void mainUser(ListParent &L) {
             }
 
         } else if (pilihan == 5) {
-            cout << "\n--- Show Produk by Kategori ---" << endl;
+            cout << "\n--- Cari Produk Berdasarkan Kategori ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
             cout << "Kategori: ";
@@ -88,11 +90,12 @@ void mainUser(ListParent &L) {
             if (toko == nullptr) {
                 cout << "Toko tidak ditemukan!" << endl;
             } else {
-                showProdukInfo(toko);
+                // PERBAIKAN DI SINI: tambahkan parameter kategori
+                showProdukInfo(toko, kategori);
             }
 
         } else if (pilihan == 6) {
-            cout << "\n--- Search Toko ---" << endl;
+            cout << "\n--- Cari Toko ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
 
@@ -106,7 +109,7 @@ void mainUser(ListParent &L) {
             }
 
         } else if (pilihan == 7) {
-            cout << "\n--- Search Produk ---" << endl;
+            cout << "\n--- Cari Produk ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
             cout << "Nama Produk: ";
@@ -143,7 +146,7 @@ void mainUser(ListParent &L) {
             }
 
         } else if (pilihan == 9) {
-            cout << "\n--- Hitung Produk by Kategori ---" << endl;
+            cout << "\n--- Hitung Produk Berdasarkan Kategori ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
             cout << "Kategori: ";
@@ -154,8 +157,23 @@ void mainUser(ListParent &L) {
                 cout << "Toko tidak ditemukan!" << endl;
             } else {
                 int jumlah = hitungProdukKategori(toko, kategori);
-                cout << "Jumlah produk kategori " << kategori 
+                cout << "Jumlah produk kategori " << kategori
                      << " di toko " << namaToko << ": " << jumlah << endl;
+            }
+
+        } else if (pilihan == 10) {
+            cout << "\n--- Cek Produk Stok Rendah ---" << endl;
+            cout << "Nama Toko: ";
+            cin >> namaToko;
+
+            addressP toko = searchToko(L, namaToko);
+            if (toko == nullptr) {
+                cout << "Toko tidak ditemukan!" << endl;
+            } else {
+                int batas;
+                cout << "Masukkan batas stok minimum: ";
+                cin >> batas;
+                searchProdukLowStock(toko, batas);
             }
 
         } else if (pilihan == 0) {

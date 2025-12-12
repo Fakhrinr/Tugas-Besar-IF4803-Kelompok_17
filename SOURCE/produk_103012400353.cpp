@@ -1,3 +1,4 @@
+// produk_103012400353.cpp
 #include "Produk.h"
 #include "Toko.h"
 #include <iostream>
@@ -33,65 +34,70 @@ void insertLastProduk(addressP &P, addressC C) {
 }
 
 void insertAfterProduk(addressP &P, addressC C, infotype prev) {
+    if (P->firstC == nullptr) {
+        cout << "Tidak ada produk di toko ini!" << endl;
+        return;
+    }
+
     addressC prec = P->firstC;
     while (prec != nullptr && prec->namaProduk != prev) {
         prec = prec->next;
     }
-    
+
     if (prec == nullptr) {
         cout << "Produk " << prev << " tidak ditemukan." << endl;
         return;
     }
-    
+
     C->next = prec->next;
     C->prev = prec;
-    
+
     if (prec->next != nullptr) {
         prec->next->prev = C;
     }
-    
+
     prec->next = C;
 }
 
 addressC searchProduk(addressP P, infotype namaProduk) {
     addressC Produk = P->firstC;
-    
+
     while (Produk != nullptr) {
         if (Produk->namaProduk == namaProduk) {
             return Produk;
         }
         Produk = Produk->next;
     }
-    
+
     return nullptr;
 }
 
 int hitungProdukKategori(addressP P, infotype kategori) {
     int Jumlah = 0;
     addressC Produk = P->firstC;
-    
+
     while (Produk != nullptr) {
         if (Produk->kategori == kategori) {
             Jumlah++;
         }
         Produk = Produk->next;
     }
-    
+
     return Jumlah;
 }
 
 void showAllProduk(addressP P) {
     addressC Produk = P->firstC;
-    
+
     if (Produk == nullptr) {
         cout << "Tidak ada produk di toko " << P->namaToko << endl;
         return;
     }
-    
-    cout << "=== Daftar Produk Toko " << P->namaToko << " ===" << endl;
+
+    cout << "\n=== Daftar Produk Toko " << P->namaToko << " ===" << endl;
     cout << "Alamat: " << P->alamatToko << endl;
     cout << "--------------------------------------" << endl;
-    
+
     int Jumlah = 1;
     while (Produk != nullptr) {
         cout << Jumlah << ". " << Produk->namaProduk << endl;
@@ -100,7 +106,7 @@ void showAllProduk(addressP P) {
         cout << "   Stok: " << Produk->stok << " unit" << endl;
         cout << "   Harga: Rp " << Produk->harga << endl;
         cout << "--------------------------------------" << endl;
-        
+
         Produk = Produk->next;
         Jumlah++;
     }
