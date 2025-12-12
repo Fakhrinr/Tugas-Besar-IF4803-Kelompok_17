@@ -30,9 +30,13 @@ void insertLastToko(ListParent &L, addressP P){
 }
 
 void insertAfterToko(ListParent &L, addressP P,addressP prec){//List sudah dipastikan tidak kosong
+    addressP Q = searchToko(L, prec->namaToko);
+
     if(prec != nullptr){
-        P->nextT = prec->nextT;
-        prec->nextT = P;
+        P->nextT = Q->nextT;
+        Q->nextT = P;
+    }else{
+        cout << "Toko tidak ditemukan" << endl;
     }
 }
 
