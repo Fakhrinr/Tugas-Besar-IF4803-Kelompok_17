@@ -8,6 +8,7 @@ using namespace std;
 void mainAdmin(ListParent &L);
 void mainToko(ListParent &L);
 void mainProduk(ListParent &L);
+void dataDummyParent(ListParent &L);  
 
 void mainToko(ListParent &L) {
     int pilihan = -99;
@@ -171,4 +172,32 @@ void mainAdmin(ListParent &L) {
                 cout << "Pilihan tidak valid! Silakan coba lagi." << endl;
         }
     }
+}
+
+
+void initDummyData(ListParent &L) {
+
+    // DUMMY TOKO (PARENT)
+    addressP toko1 = createElmToko("Alfamart", "Jl_Merdeka");
+    addressP toko2 = createElmToko("Indomaret", "Jl_Sudirman");
+    addressP toko3 = createElmToko("Superindo", "Jl_AsiaAfrika");
+
+    insertLastToko(L, toko1);
+    insertLastToko(L, toko2);
+    insertLastToko(L, toko3);
+
+    // DUMMY PRODUK ALFAMART
+    insertLastProduk(toko1,createElmProduk("Aqua", "Danone", "Minuman", 50, 5000));
+    insertLastProduk(toko1,createElmProduk("Indomie", "Indofood", "Makanan", 100, 3000));
+    insertLastProduk(toko1,createElmProduk("TehBotol", "Sosro", "Minuman", 30, 6000));
+
+    // DUMMY PRODUK INDOMARET
+
+    insertLastProduk(toko2,createElmProduk("Beras", "Wilmar", "Sembako", 20, 60000));
+    insertLastProduk(toko2,createElmProduk("Gula", "Gulaku", "Sembako", 15, 14000));
+    insertLastProduk(toko2,createElmProduk("Minyak", "Bimoli", "Sembako", 25, 18000));
+
+    // DUMMY PRODUK SUPERINDO
+    insertLastProduk(toko3,createElmProduk("Susu", "UltraJaya", "Minuman", 10, 7000));
+    insertLastProduk(toko3,createElmProduk("Roti", "SariRoti", "Makanan", 40, 12000));
 }

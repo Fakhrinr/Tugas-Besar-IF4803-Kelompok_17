@@ -6,10 +6,12 @@ using namespace std;
 
 void mainAdmin(ListParent &L);
 void mainUser(ListParent &L);
+void dataDummyParent(ListParent &L);
 
 int main() {
     ListParent L;
     createListToko(L);
+    
 
     int pilihan = -1;
 
