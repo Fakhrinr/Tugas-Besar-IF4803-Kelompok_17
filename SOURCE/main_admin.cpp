@@ -123,7 +123,6 @@ void mainProduk(ListParent &L) {
         cout << "\n========== MENU PRODUK ==========" << endl;
         cout << "1. Cari Toko Terlebih Dahulu" << endl;
         cout << "2. Kembali ke Menu Admin" << endl;
-        cout << "0. Keluar" << endl;
         cout << "==================================" << endl;
         cout << "Masukkan Pilihan: ";
         cin >> pilihan;
@@ -141,8 +140,11 @@ void mainProduk(ListParent &L) {
                 // Tambahkan menu produk di sini sesuai kebutuhan
                 showAllProduk(toko);
             }
-        } else if (pilihan == 0) {
-            cout << "Keluar dari Menu Produk" << endl;
+        }else if (pilihan == 2) {
+            cout << "Kembali ke Menu Admin" << endl;
+            break;
+        }else{
+            cout << "Pilihan tidak valid!" << endl;
         }
     }
 }
