@@ -11,6 +11,7 @@ void dataDummyParent(ListParent &L);
 int main() {
     ListParent L;
     createListToko(L);
+    dataDummyParent(L);
     
 
     int pilihan = -1;

@@ -175,7 +175,7 @@ void mainAdmin(ListParent &L) {
 }
 
 
-void initDummyData(ListParent &L) {
+void dataDummyParent(ListParent &L) {
 
     // DUMMY TOKO (PARENT)
     addressP toko1 = createElmToko("Alfamart", "Jl_Merdeka");
