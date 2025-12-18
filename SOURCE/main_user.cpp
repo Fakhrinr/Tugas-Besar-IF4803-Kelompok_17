@@ -9,36 +9,23 @@ void mainUser(ListParent &L) {
 
     while (pilihan != 0) {
         cout << "\n=== MENU PRODUK ===" << endl;
-        cout << "1. Tambah Toko" << endl;
-        cout << "2. Tambah Produk" << endl;
-        cout << "3. Lihat Semua Toko" << endl;
-        cout << "4. Lihat Produk di Toko" << endl;
-        cout << "5. Cari Produk Berdasarkan Kategori" << endl;
-        cout << "6. Cari Toko" << endl;
-        cout << "7. Cari Produk" << endl;
-        cout << "8. Hitung Total Produk di Toko" << endl;
-        cout << "9. Hitung Produk Berdasarkan Kategori" << endl;
-        cout << "10. Cek Produk Stok Rendah" << endl;
+        cout << "1. Tambah Produk" << endl;
+        cout << "2. Lihat Semua Toko" << endl;
+        cout << "3. Lihat Produk di Toko" << endl;
+        cout << "4. Cari Produk Berdasarkan Kategori" << endl;
+        cout << "5. Cari Produk" << endl;
+        cout << "6. Hitung Total Produk di Toko" << endl;
+        cout << "7. Hitung Produk Berdasarkan Kategori" << endl;
+        cout << "8. Cek Produk Stok Rendah" << endl;
         cout << "0. Keluar" << endl;
         cout << "Pilihan: ";
         cin >> pilihan;
 
         string nama, alamat, pemasok, kategori, namaToko, namaProduk;
 
-        if (pilihan == 1) {
-            cout << "\n--- Tambah Toko ---" << endl;
-            cout << "Nama Toko: ";
-            cin >> nama;
-            cout << "Alamat Toko: ";
-            cin >> alamat;
-
-            addressP tokoBaru = createElmToko(nama, alamat);
-            insertLastToko(L, tokoBaru);
-            cout << "Toko berhasil ditambahkan!" << endl;
-
-        } else if (pilihan == 2) {
+         if (pilihan == 1) {
             cout << "\n--- Tambah Produk ---" << endl;
-            cout << "Nama Toko: ";
+            cout <<"Nama Toko: ";
             cin >> namaToko;
 
             addressP toko = searchToko(L, namaToko);
@@ -63,11 +50,11 @@ void mainUser(ListParent &L) {
                 cout << "Produk berhasil ditambahkan!" << endl;
             }
 
-        } else if (pilihan == 3) {
+        } else if (pilihan == 2) {
             cout << "\n";
             showAllToko(L);
 
-        } else if (pilihan == 4) {
+        } else if (pilihan == 3) {
             cout << "\n--- Lihat Produk di Toko ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
@@ -79,7 +66,7 @@ void mainUser(ListParent &L) {
                 showAllProduk(toko);
             }
 
-        } else if (pilihan == 5) {
+        } else if (pilihan == 4) {
             cout << "\n--- Cari Produk Berdasarkan Kategori ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
@@ -94,21 +81,7 @@ void mainUser(ListParent &L) {
                 showProdukInfo(toko, kategori);
             }
 
-        } else if (pilihan == 6) {
-            cout << "\n--- Cari Toko ---" << endl;
-            cout << "Nama Toko: ";
-            cin >> namaToko;
-
-            addressP toko = searchToko(L, namaToko);
-            if (toko == nullptr) {
-                cout << "Toko tidak ditemukan!" << endl;
-            } else {
-                cout << "\nToko ditemukan!" << endl;
-                cout << "Nama: " << toko->namaToko << endl;
-                cout << "Alamat: " << toko->alamatToko << endl;
-            }
-
-        } else if (pilihan == 7) {
+        } else if (pilihan == 5) {
             cout << "\n--- Cari Produk ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
@@ -132,7 +105,7 @@ void mainUser(ListParent &L) {
                 }
             }
 
-        } else if (pilihan == 8) {
+        } else if (pilihan == 6) {
             cout << "\n--- Hitung Total Produk ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
@@ -145,7 +118,7 @@ void mainUser(ListParent &L) {
                 cout << "Total produk di toko " << namaToko << ": " << total << endl;
             }
 
-        } else if (pilihan == 9) {
+        } else if (pilihan == 7) {
             cout << "\n--- Hitung Produk Berdasarkan Kategori ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
@@ -161,7 +134,7 @@ void mainUser(ListParent &L) {
                      << " di toko " << namaToko << ": " << jumlah << endl;
             }
 
-        } else if (pilihan == 10) {
+        } else if (pilihan == 8) {
             cout << "\n--- Cek Produk Stok Rendah ---" << endl;
             cout << "Nama Toko: ";
             cin >> namaToko;
