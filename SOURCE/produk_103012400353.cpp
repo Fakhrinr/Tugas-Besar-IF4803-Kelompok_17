@@ -9,27 +9,51 @@ void insertFirstProduk(addressP &P, addressC C) {
         P->firstC = C;
         C->prev = nullptr;
         C->next = nullptr;
-    } else {
-        C->next = P->firstC;
-        C->prev = nullptr;
-        P->firstC->prev = C;
-        P->firstC = C;
+        cout << "Produk baru berhasil ditambahkan di awal!" << endl;
+    }else {
+    addressC existing = searchProduk(P, C->namaProduk);
+
+        if (existing != nullptr) {
+            existing->stok += C->stok;
+            cout << "" << endl;
+            cout << "Produk " << C->namaProduk << " sudah ada. Stok ditambahkan!" << endl;
+            cout << "Stok" << C->namaProduk << "sekarang: " << existing->stok << " unit" << endl;
+            delete C;
+    }else {
+            C->next = P->firstC;
+            C->prev = nullptr;
+            P->firstC->prev = C;
+            P->firstC = C;
+            cout << "Produk baru berhasil ditambahkan di awal!" << endl;
+        }
     }
 }
 
 void insertLastProduk(addressP &P, addressC C) {
-    if (P->firstC == nullptr) {
+if (P->firstC == nullptr) {
         P->firstC = C;
         C->prev = nullptr;
         C->next = nullptr;
     } else {
-        addressC last = P->firstC;
-        while (last->next != nullptr) {
-            last = last->next;
+        addressC existing = searchProduk(P, C->namaProduk);
+
+        if (existing != nullptr) {
+            existing->stok += C->stok;
+            cout << "" << endl;
+            cout << "Produk " << C->namaProduk << " sudah ada. Stok ditambahkan!" << endl;
+            cout << "Stok " << C->namaProduk << " sekarang: " << existing->stok << endl;
+
+            delete C;
+        } else {
+            addressC last = P->firstC;
+            while (last->next != nullptr) {
+                last = last->next;
+            }
+            C->prev = last;
+            C->next = nullptr;
+            last->next = C;
+            cout << "Produk baru berhasil ditambahkan!" << endl;
         }
-        C->prev = last;
-        C->next = nullptr;
-        last->next = C;
     }
 }
 
