@@ -68,18 +68,16 @@ void mainToko(ListParent &L) {
 
         } else if (pilihan == 4) {
             deleteFirstToko(L);
-            cout << "Toko pertama berhasil dihapus!" << endl;
 
         } else if (pilihan == 5) {
             deleteLastToko(L);
-            cout << "Toko terakhir berhasil dihapus!" << endl;
 
         } else if (pilihan == 6) {
             infotype prev;
             cout << "Masukkan nama toko sebelumnya: ";
             cin >> prev;
             deleteAfterToko(L, prev);
-            cout << "Toko berhasil dihapus!" << endl;
+
 
         } else if (pilihan == 7) {
             infotype namaToko;
