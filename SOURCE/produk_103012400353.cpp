@@ -9,22 +9,19 @@ void insertFirstProduk(addressP &P, addressC C) {
         P->firstC = C;
         C->prev = nullptr;
         C->next = nullptr;
-        cout << "Produk baru berhasil ditambahkan di awal!" << endl;
     }else {
     addressC existing = searchProduk(P, C->namaProduk);
 
         if (existing != nullptr) {
             existing->stok += C->stok;
-            cout << "" << endl;
             cout << "Produk " << C->namaProduk << " sudah ada. Stok ditambahkan!" << endl;
-            cout << "Stok" << C->namaProduk << "sekarang: " << existing->stok << " unit" << endl;
+            cout << "Stok sekarang: " << existing->stok << " unit" << endl;
             delete C;
     }else {
             C->next = P->firstC;
             C->prev = nullptr;
             P->firstC->prev = C;
             P->firstC = C;
-            cout << "Produk baru berhasil ditambahkan di awal!" << endl;
         }
     }
 }
@@ -51,9 +48,7 @@ if (P->firstC == nullptr) {
             }
             C->prev = last;
             C->next = nullptr;
-            last->next = C;
-            cout << "Produk baru berhasil ditambahkan!" << endl;
-        }
+            last->next = C;        }
     }
 }
 
