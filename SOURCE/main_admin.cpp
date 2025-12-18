@@ -120,7 +120,7 @@ void mainProduk(ListParent &L) {
     addressP selectedToko = nullptr;
     while (pilihan != 0) {
         cout << "\n========== MENU PRODUK ==========" << endl;
-        cout << "1. Cari Toko Terlebih Dahulu" << endl;
+        cout << "1. Kelola Toko" << endl;
         cout << "2. Kembali ke Menu Admin" << endl;
         cout << "==================================" << endl;
         cout << "Masukkan Pilihan: ";
@@ -143,6 +143,7 @@ void mainProduk(ListParent &L) {
                 cout << "5. Hitung Total Produk di Toko" << endl;
                 cout << "6. Hitung Produk Berdasarkan Kategori" << endl;
                 cout << "7. Cek Produk Stok Rendah" << endl;
+                cout << "8. Hapus Produk" << endl;
                 cout << "0. Keluar" << endl;
                 cout << "Pilihan: ";
                 cin >> pilihan;
@@ -199,7 +200,6 @@ void mainProduk(ListParent &L) {
                             if (toko == nullptr) {
                                 cout << "Toko tidak ditemukan!" << endl;
                             } else {
-                                // PERBAIKAN DI SINI: tambahkan parameter kategori
                                 showProdukInfo(toko, kategori);
                             }
 
@@ -271,6 +271,27 @@ void mainProduk(ListParent &L) {
                                 searchProdukLowStock(toko, batas);
                             }
 
+                        } else if (pilihan == 8){
+                            cout << "Pilih metode penghapusan:" << endl;
+                            cout << "1. Hapus Produk Pertama" << endl;
+                            cout << "2. Hapus Produk Terakhir" << endl;
+                            cout << "3. Hapus Produk Setelah Nama Tertentu" << endl;
+                            cout << "Pilihan: ";
+                            int hapusPilihan;
+                            cin >> hapusPilihan;
+
+                            if (hapusPilihan == 1) {
+                                deleteFirstProduk(toko);
+                            } else if (hapusPilihan == 2) {
+                                deleteLastProduk(toko);
+                            } else if (hapusPilihan == 3) {
+                                infotype namaProdukSebelum;
+                                cout << "Masukkan nama produk sebelumnya: ";
+                                cin >> namaProdukSebelum;
+                                deleteAfterProduk(toko, namaProdukSebelum);
+                            } else {
+                                cout << "Pilihan tidak valid!" << endl;
+                            }
                         } else if (pilihan == 0) {
                             cout << "\nKeluar dari menu user..." << endl;
 
