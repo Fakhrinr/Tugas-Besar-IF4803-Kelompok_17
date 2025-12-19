@@ -21,7 +21,6 @@ void deleteFirstToko(ListParent &L) {
         addressP P = L.first;
         L.first = P->nextT;
 
-        // Hapus semua produk di toko ini
         addressC produk = P->firstC;
         while (produk != nullptr) {
             addressC temp = produk;
@@ -46,8 +45,6 @@ void deleteLastToko(ListParent &L) {
         }
 
         addressP last = P->nextT;
-
-        // Hapus semua produk di toko ini
         addressC produk = last->firstC;
         while (produk != nullptr) {
             addressC temp = produk;
@@ -77,7 +74,6 @@ void deleteAfterToko(ListParent &L, infotype prev) {
     } else {
         addressP toDelete = P->nextT;
 
-        // Hapus semua produk di toko ini
         addressC produk = toDelete->firstC;
         while (produk != nullptr) {
             addressC temp = produk;
@@ -99,8 +95,8 @@ void showAllToko(ListParent L) {
         return;
     }
 
-    cout << "\n=== DAFTAR TOKO INDOAPRIL ===" << endl;
-    cout << "=============================" << endl;
+    cout << "\n======= DAFTAR TOKO  =======" << endl;
+    cout << "==============================" << endl;
 
     int Jumlah = 1;
     while (Toko != nullptr) {

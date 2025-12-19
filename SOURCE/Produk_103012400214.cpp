@@ -68,7 +68,7 @@ void deleteAfterProduk(addressP &P, infotype namaProduk) {
         if (toDelete->next != nullptr) {
             toDelete->next->prev = temp;
         }
-        toDelete->next = nullptr;
+        delete toDelete;
         cout << "Produk berhasil dihapus!" << endl;
     }
 }

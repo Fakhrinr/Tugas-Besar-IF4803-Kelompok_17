@@ -120,7 +120,7 @@ void mainProduk(ListParent &L) {
     addressP selectedToko = nullptr;
     while (pilihan != 0) {
         cout << "\n========== MENU PRODUK ==========" << endl;
-        cout << "1. Kelola Toko" << endl;
+        cout << "1. Kelola Produk" << endl;
         cout << "2. Kembali ke Menu Admin" << endl;
         cout << "==================================" << endl;
         cout << "Masukkan Pilihan: ";
@@ -135,6 +135,7 @@ void mainProduk(ListParent &L) {
             if (toko == nullptr) {
                 cout << "Toko tidak ditemukan!" << endl;
             } else {
+
                 cout << "\n=== Menu Produk untuk Toko " << toko->namaToko << " ===" << endl;
                 cout << "1. Tambah Produk" << endl;
                 cout << "2. Lihat Produk di Toko" << endl;
@@ -151,7 +152,7 @@ void mainProduk(ListParent &L) {
                 string nama, alamat, pemasok, kategori, namaToko, namaProduk;
 
                          if (pilihan == 1) {
-                            cout << "\n--- Tambah Produk ---" << endl;
+                             cout << "\n--- Tambah Produk ---" << endl;
                             cout <<"Nama Toko: ";
                             cin >> namaToko;
 
@@ -298,7 +299,8 @@ void mainProduk(ListParent &L) {
                         } else {
                             cout << "\nPilihan tidak valid!" << endl;
                         }
-                }
+            }
+
 
         }else if (pilihan == 2) {
             cout << "Kembali ke Menu Admin" << endl;
